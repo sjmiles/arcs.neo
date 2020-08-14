@@ -26,8 +26,8 @@ Entry Points
 _...for trying stuff in browser_
 
 - play with parser output
-  - http://localhost/<root>/arcs.neo/manifest-parser/toy
-  
+  - http://localhost/.../arcs.neo/manifest-parser/toy
+
 - examine recipe2plan output
-  - http://localhost/<root>/arcs.neo/tools/recipe2plan/smoke
+  - http://localhost/.../arcs.neo/tools/recipe2plan/smoke
 
