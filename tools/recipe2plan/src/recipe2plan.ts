@@ -7,7 +7,7 @@
  * subject to an additional IP rights grant found at
  * http://polymer.github.io/PATENTS.txt
  */
-import {ManifestAst} from '../../../manifest/dist/manifest-ast.js';
+import {ManifestParser} from '../../../manifest-parser/dist/manifest-parser.js';
 import {AllocatorRecipeResolver} from './allocator-recipe-resolver.js';
 import {PlanGenerator} from './plan-generator.js';
 // import {assert} from '../../platform/assert-node.js';
@@ -30,7 +30,7 @@ type Serial = string | Uint8Array;
  * @return Generated Kotlin code.
  */
 export const recipe2plan = async (
-    manifest: ManifestAst,
+    manifest: ManifestParser,
     format: OutputFormat,
     policiesManifest?, //: Manifest,
     recipeFilter?: string,
@@ -38,6 +38,7 @@ export const recipe2plan = async (
   ): Promise<Serial> => {
   // construct plans from `manifest`
   let plans = await (new AllocatorRecipeResolver(manifest, salt)).resolve();
+  //console.log('Plans:', JSON.stringify(plans, null, '  '));
   console.log('Plans:', plans);
   // filter and validate
   plans = filterPlans(plans, recipeFilter);

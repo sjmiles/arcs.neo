@@ -8,7 +8,7 @@
  * http://polymer.github.io/PATENTS.txt
  */
 
-import {ManifestAst} from '../../../manifest/dist/manifest-ast.js';
+import {ManifestParser} from '../../../manifest-parser/dist/manifest-parser.js';
 /*
 import {assert} from '../../platform/assert-web.js';
 import {Id} from '../../runtime/id.js';
@@ -46,9 +46,9 @@ export class AllocatorRecipeResolver {
   //private readonly runtime: Runtime;
   //private readonly createHandleRegistry: Map<Handle, string> = new Map<Handle, string>();
   private createHandleIndex = 0;
-  private ast: ManifestAst;
+  private ast: ManifestParser;
 
-  constructor(ast: ManifestAst, private randomSalt: string) {
+  constructor(ast: ManifestParser, private randomSalt: string) {
     this.ast = ast;
     //this.runtime = new Runtime({context});
     //DatabaseStorageKey.register();

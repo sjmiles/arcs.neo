@@ -8,10 +8,10 @@
  * http://polymer.github.io/PATENTS.txt
  */
 
-import {fetch} from '../../platform/fetch.js';
-import {Dictionary} from '../../common/dist/hot.js';
-import {parse} from './gen/manifest-parser.js';
+import {fetch} from '../../common/fetch.js';
+import {parse} from './gen/peg-parser.js';
 import * as AstNode from './manifest-ast-nodes.js';
+//import {Dictionary} from '../../common/dist/hot.js';
 
 export interface ManifestParseOptions {
   filename?: string;
@@ -44,7 +44,7 @@ class Loader {
 
 type Ast = AstNode.All[];
 
-export class ManifestAst {
+export class ManifestParser {
   static async load(path: string, options: ManifestParseOptions = {}): Promise<Ast> {
     const content = await Loader.loadText(path);
     if (!options || !options.filename) {
@@ -116,9 +116,9 @@ export class ManifestAst {
     this.ast = ast;
   }
   get recipes() {
-    return ManifestAst.extract('recipe', this.ast);
+    return ManifestParser.extract('recipe', this.ast);
   }
   get stores() {
-    return ManifestAst.extract('store', this.ast);
+    return ManifestParser.extract('store', this.ast);
   }
 }

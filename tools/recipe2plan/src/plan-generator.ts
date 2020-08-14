@@ -8,7 +8,7 @@
  * http://polymer.github.io/PATENTS.txt
  */
 
-import {ManifestAst} from '../../../manifest/dist/manifest-ast.js';
+import {ManifestParser} from '../../../manifest-parser/dist/manifest-parser.js';
 // import {Recipe} from '../runtime/recipe/recipe.js';
 // import {Type} from '../runtime/type.js';
 // import {Particle} from '../runtime/recipe/particle.js';
@@ -57,10 +57,10 @@ export class PlanGenerator {
   async createPlans(): Promise<string[]> {
     const declarations: string[] = [];
     for (const recipe of this.recipes) {
-      const particles = ManifestAst.extract('particle', recipe.items);
+      const particles = ManifestParser.extract('particle', recipe.items);
       const gps: string[] = await Promise.all(particles.map(p => this.generateParticle(p)));
       //
-      const handles = ManifestAst.extract('handle', recipe.items);
+      const handles = ManifestParser.extract('handle', recipe.items);
       const ghs = handles.map(h => this.handleVariableName(h));
       //
       const planInit = `val ${recipe.name}Plan = `;
@@ -86,7 +86,7 @@ export class PlanGenerator {
    */
   handleVariableName(handle: Handle): string {
     //return `${handle.recipe.name}_Handle${handle.recipe.handles.indexOf(handle)}`;
-    return `NoRecipe_Handle${handle.name}`;
+    return `NoRecipe_Handle_${handle.name}`;
   }
 
 //   /**

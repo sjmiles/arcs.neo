@@ -7,7 +7,7 @@
  * subject to an additional IP rights grant found at
  * http://polymer.github.io/PATENTS.txt
  */
-import { ManifestAst } from '../../../manifest/dist/manifest-ast.js';
+import { ManifestParser } from '../../../manifest-parser/dist/manifest-parser.js';
 import { Dictionary } from '../../../common/dist/hot.js';
 declare type Recipe = Dictionary<any>;
 export declare class AllocatorRecipeResolverError extends Error {
@@ -23,7 +23,7 @@ export declare class AllocatorRecipeResolver {
     private randomSalt;
     private createHandleIndex;
     private ast;
-    constructor(ast: ManifestAst, randomSalt: string);
+    constructor(ast: ManifestParser, randomSalt: string);
     /**
      * Produces resolved recipes with storage keys.
      *

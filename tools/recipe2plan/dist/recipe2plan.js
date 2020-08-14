@@ -23,6 +23,7 @@ export const recipe2plan = async (manifest, format, policiesManifest, //: Manife
 recipeFilter, salt = `salt_${Math.random()}`) => {
     // construct plans from `manifest`
     let plans = await (new AllocatorRecipeResolver(manifest, salt)).resolve();
+    //console.log('Plans:', JSON.stringify(plans, null, '  '));
     console.log('Plans:', plans);
     // filter and validate
     plans = filterPlans(plans, recipeFilter);

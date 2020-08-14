@@ -7,8 +7,8 @@
  * subject to an additional IP rights grant found at
  * http://polymer.github.io/PATENTS.txt
  */
-import { fetch } from '../../platform/fetch.js';
-import { parse } from './gen/manifest-parser.js';
+import { fetch } from '../../common/fetch.js';
+import { parse } from './gen/peg-parser.js';
 // interface ManifestLoadOptions {
 //   registry?: Dictionary<Promise<Manifest>>;
 //   memoryProvider?/*: VolatileMemoryProvider*/;
@@ -26,7 +26,7 @@ class Loader {
         return await response.text();
     }
 }
-export class ManifestAst {
+export class ManifestParser {
     constructor(ast) {
         this.ast = ast;
     }
@@ -97,9 +97,9 @@ export class ManifestAst {
         return results;
     }
     get recipes() {
-        return ManifestAst.extract('recipe', this.ast);
+        return ManifestParser.extract('recipe', this.ast);
     }
     get stores() {
-        return ManifestAst.extract('store', this.ast);
+        return ManifestParser.extract('store', this.ast);
     }
 }

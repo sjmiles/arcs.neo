@@ -1,10 +1,16 @@
 import {recipe2plan, OutputFormat} from '../dist/recipe2plan.js';
-import {ManifestAst} from '../../../manifest/dist/manifest-ast.js';
+import {ManifestParser} from '../../../manifest-parser/dist/manifest-parser.js';
+import {ManifestAstDecorator} from '../../../runtime/dist/manifest/manifest-ast-decorator.js';
 
 (async () => {
-  const items = await ManifestAst.load(`http://localhost/projects/arcs/arcs/particles/Dataflow/OverviewAction.arcs`);
+  // parse the manifest into a raw AST
+  const items = await ManifestParser.load(`http://localhost/projects/arcs/arcs/particles/Dataflow/OverviewAction.arcs`);
   console.log(`Parsed ${items.length} item(s)`);
-  const ast = new ManifestAst(items);
+  // decorate the ast into a usable manifest structure
+  const manast = ManifestAstDecorator.decorate(items);
+  //
+  // TODO(sjmiles): ... this is just a utility thingy, refactor
+  const ast = new ManifestParser(items);
   const recipes = ast.recipes;
   console.log(`Ast has ${recipes.length} recipe(s)`);
   const stores = ast.stores;
