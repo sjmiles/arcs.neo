@@ -1,4 +1,4 @@
-Arcs.Neo
+Arcs.neo
 ========
 
 Repository is divided into several _components|properties_ (bikeshedding needed).
