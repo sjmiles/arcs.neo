@@ -8,7 +8,7 @@
  * http://polymer.github.io/PATENTS.txt
  */
 
-import {fetch} from '../../common/fetch.js';
+import {fetch} from '../../common/dist/fetch.js';
 import {parse} from './gen/peg-parser.js';
 import * as AstNode from './manifest-ast-nodes.js';
 //import {Dictionary} from '../../common/dist/hot.js';

@@ -7,7 +7,7 @@
  * subject to an additional IP rights grant found at
  * http://polymer.github.io/PATENTS.txt
  */
-import { fetch } from '../../common/fetch.js';
+import { fetch } from '../../common/dist/fetch.js';
 import { parse } from './gen/peg-parser.js';
 // interface ManifestLoadOptions {
 //   registry?: Dictionary<Promise<Manifest>>;

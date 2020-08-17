@@ -2,9 +2,9 @@
   "compilerOptions": {
     "module": "esnext",
     "target": "esnext",
-    //"allowJs": true,
     "rootDir": "./src/",
     "outDir": "./dist",
+    "allowJs": true,
     "declaration": true
   },
   "include": [

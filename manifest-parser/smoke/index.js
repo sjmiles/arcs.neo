@@ -1,5 +1,5 @@
 
-import {fetch} from '../../fetch.js';
+import {fetch} from '../../common/dist/fetch.js';
 import {ManifestParser} from '../dist/manifest-parser.js';
 
 const go = async () => {
