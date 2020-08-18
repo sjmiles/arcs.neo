@@ -8,8 +8,11 @@
  * http://polymer.github.io/PATENTS.txt
  */
 
-import {fetch} from '../../common/dist/fetch.js';
+//import {fetch} from '../../common/dist/fetch.js';
+import {Loader} from '../../common/dist/Loader.js';
+import {Path} from '../../common/dist/Path.js';
 import {parse} from './gen/peg-parser.js';
+
 import * as AstNode from './manifest-ast-nodes.js';
 //import {Dictionary} from '../../common/dist/hot.js';
 
@@ -26,21 +29,6 @@ export interface ManifestParseOptions {
 //   registry?: Dictionary<Promise<Manifest>>;
 //   memoryProvider?/*: VolatileMemoryProvider*/;
 // }
-
-class Path {
-  static url(root, path?) {
-    return (new URL(path || root, root));
-  }
-}
-
-class Loader {
-  static async loadText(root, path?) {
-    const url = Path.url(path || root, root);
-    //console.log('Loader', root, path, url.href);
-    const response = await fetch(url);
-    return await response.text();
-  }
-}
 
 type Ast = AstNode.All[];
 
@@ -110,15 +98,10 @@ export class ManifestParser {
     });
     return results;
   }
-  //
-  ast;
-  constructor(ast) {
-    this.ast = ast;
+  static recipes(ast) {
+    return ManifestParser.extract('recipe', ast);
   }
-  get recipes() {
-    return ManifestParser.extract('recipe', this.ast);
-  }
-  get stores() {
-    return ManifestParser.extract('store', this.ast);
+  static stores(ast) {
+    return ManifestParser.extract('store', ast);
   }
 }

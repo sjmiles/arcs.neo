@@ -7,29 +7,11 @@
  * subject to an additional IP rights grant found at
  * http://polymer.github.io/PATENTS.txt
  */
-import { fetch } from '../../common/dist/fetch.js';
+//import {fetch} from '../../common/dist/fetch.js';
+import { Loader } from '../../common/dist/Loader.js';
+import { Path } from '../../common/dist/Path.js';
 import { parse } from './gen/peg-parser.js';
-// interface ManifestLoadOptions {
-//   registry?: Dictionary<Promise<Manifest>>;
-//   memoryProvider?/*: VolatileMemoryProvider*/;
-// }
-class Path {
-    static url(root, path) {
-        return (new URL(path || root, root));
-    }
-}
-class Loader {
-    static async loadText(root, path) {
-        const url = Path.url(path || root, root);
-        //console.log('Loader', root, path, url.href);
-        const response = await fetch(url);
-        return await response.text();
-    }
-}
 export class ManifestParser {
-    constructor(ast) {
-        this.ast = ast;
-    }
     static async load(path, options = {}) {
         const content = await Loader.loadText(path);
         if (!options || !options.filename) {
@@ -96,10 +78,10 @@ export class ManifestParser {
         });
         return results;
     }
-    get recipes() {
-        return ManifestParser.extract('recipe', this.ast);
+    static recipes(ast) {
+        return ManifestParser.extract('recipe', ast);
     }
-    get stores() {
-        return ManifestParser.extract('store', this.ast);
+    static stores(ast) {
+        return ManifestParser.extract('store', ast);
     }
 }
