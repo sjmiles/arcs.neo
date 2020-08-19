@@ -30,4 +30,3 @@ _...for trying stuff in browser_
 
 - examine recipe2plan output
   - http://localhost/.../arcs.neo/tools/recipe2plan/smoke
-
